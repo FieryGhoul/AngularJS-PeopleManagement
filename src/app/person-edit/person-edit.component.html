@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>{{ isNewPerson ? 'Add New Person' : 'Edit Person' }}</h2>
+  
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" formControlName="name" class="form-control">
+      <div *ngIf="personForm.get('name').invalid && personForm.get('name').touched" class="text-danger">
+        Name is required
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+      <div *ngIf="personForm.get('email').invalid && personForm.get('email').touched" class="text-danger">
+        Valid email is required
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" formControlName="phone" class="form-control">
+    </div>
+    
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" id="age" formControlName="age" class="form-control">
+    </div>
+    
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="personForm.invalid">
+        {{ isNewPerson ? 'Create' : 'Update' }}
+      </button>
+      <button type="button" (click)="onCancel()" class="btn btn-secondary">Cancel</button>
+    </div>
+  </form>
+</div>
